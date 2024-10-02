@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/AnalysisResults.css';
 
 interface AnalysisResultsProps {
   results: string;
@@ -7,15 +8,13 @@ interface AnalysisResultsProps {
 const AnalysisResults: React.FC<AnalysisResultsProps> = ({ results }) => {
   if (!results) return <p>No results available</p>;
 
-  console.log('Raw analysis results:', results);
-
   const sections = [
-    { title: 'Analysis', delimiter: 'ANALYSIS' },
-    { title: 'Season', delimiter: 'SEASON' },
-    { title: 'Explanation', delimiter: 'EXPLANATION' },
-    { title: 'Palette', delimiter: 'PALETTE' },
-    { title: 'Recommendations', delimiter: 'RECOMMENDATIONS' },
-    { title: 'Tips', delimiter: 'TIPS' },
+    { title: 'Your Color Analysis', delimiter: 'ANALYSIS', icon: '🎨' },
+    { title: 'Your Color Season', delimiter: 'SEASON', icon: '🍂' },
+    { title: 'Why This Season?', delimiter: 'EXPLANATION', icon: '💡' },
+    { title: 'Your Color Palette', delimiter: 'PALETTE', icon: '🌈' },
+    { title: 'Style Recommendations', delimiter: 'RECOMMENDATIONS', icon: '👗' },
+    { title: 'Pro Tips', delimiter: 'TIPS', icon: '✨' },
   ];
 
   const parseSection = (content: string, delimiter: string) => {
@@ -26,11 +25,18 @@ const AnalysisResults: React.FC<AnalysisResultsProps> = ({ results }) => {
 
   return (
     <div className="analysis-results">
-      <h2>Analysis Results</h2>
-      {sections.map(({ title, delimiter }) => (
-        <div key={delimiter}>
-          <h3>{title}</h3>
-          <p style={{ whiteSpace: 'pre-wrap' }}>{parseSection(results, delimiter)}</p>
+      <h2 className="results-title">Your Personalized Color Analysis</h2>
+      {sections.map(({ title, delimiter, icon }) => (
+        <div key={delimiter} className="result-section">
+          <h3 className="section-title">
+            <span className="section-icon">{icon}</span>
+            {title}
+          </h3>
+          <div className="section-content">
+            {parseSection(results, delimiter).split('\n').map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
         </div>
       ))}
     </div>

@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import { analyzeImages } from '../services/api';
+import '../styles/WebcamCapture.css';
 
 interface WebcamCaptureProps {
   onImageCapture: (image: File) => void;
@@ -20,23 +21,26 @@ const WebcamCapture: React.FC<WebcamCaptureProps> = ({
   isAnalyzing,
 }) => {
   const webcamRef = useRef<Webcam>(null);
-  const [imagesSent, setImagesSent] = useState(false);
+  const [isCameraReady, setIsCameraReady] = useState(false);
+  const [isCapturing, setIsCapturing] = useState(false);
 
-  const capture = useCallback(() => {
-    const imageSrc = webcamRef.current?.getScreenshot();
-    if (imageSrc) {
-      const blob = dataURItoBlob(imageSrc);
-      const file = new File([blob], `image${capturedImages.length}.jpg`, { type: 'image/jpeg' });
-      onImageCapture(file);
-    }
+  const captureImage = useCallback(() => {
+    setIsCapturing(true);
+    setTimeout(() => {
+      const imageSrc = webcamRef.current?.getScreenshot();
+      if (imageSrc) {
+        const blob = dataURItoBlob(imageSrc);
+        const file = new File([blob], `image${capturedImages.length}.jpg`, { type: 'image/jpeg' });
+        onImageCapture(file);
+      }
+      setIsCapturing(false);
+    }, 500);
   }, [webcamRef, capturedImages.length, onImageCapture]);
 
   const handleAnalyze = async () => {
     onAnalysisStart();
-    setImagesSent(false);
     try {
       const response = await analyzeImages(capturedImages);
-      setImagesSent(true);
       onAnalysisComplete(response.results);
     } catch (error) {
       console.error('Error during analysis:', error);
@@ -57,35 +61,36 @@ const WebcamCapture: React.FC<WebcamCaptureProps> = ({
 
   return (
     <div className="webcam-container">
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        width="100%"
-        height="auto"
-      />
-      {isAnalyzing && (
-        <div className="webcam-overlay">
-          <p>Analyzing...</p>
-        </div>
-      )}
-      <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between' }}>
-        <button onClick={capture} disabled={capturedImages.length >= 5 || isAnalyzing}>
-          Capture ({capturedImages.length}/5)
+      <div className={`webcam-wrapper ${isCapturing ? 'capturing' : ''}`}>
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          videoConstraints={{ facingMode: 'user' }}
+          onUserMedia={() => setIsCameraReady(true)}
+        />
+        {!isCameraReady && <div className="camera-loading">Loading camera...</div>}
+        {isCapturing && <div className="capture-flash"></div>}
+      </div>
+      <div className="webcam-controls">
+        <button 
+          onClick={captureImage} 
+          disabled={capturedImages.length >= 5 || isAnalyzing || !isCameraReady || isCapturing}
+          className="capture-button"
+        >
+          {isCapturing ? 'Capturing...' : `Capture (${capturedImages.length}/5)`}
         </button>
         {capturedImages.length === 5 && (
-          <button onClick={handleAnalyze} disabled={isAnalyzing}>
-            {isAnalyzing ? 'Analyzing...' : 'Analyze'}
+          <button onClick={handleAnalyze} disabled={isAnalyzing} className="analyze-button">
+            {isAnalyzing ? 'Analyzing...' : 'Analyze My Colors!'}
           </button>
         )}
       </div>
-      {imagesSent && <p style={{ color: 'green', textAlign: 'center', margin: '5px 0' }}>Images sent!</p>}
-      
       <div className="captured-images">
         {capturedImages.map((image, index) => (
           <div key={index} className="captured-image">
             <img src={URL.createObjectURL(image)} alt={`Captured ${index + 1}`} />
-            <button onClick={() => onImageDelete(index)} disabled={isAnalyzing}>X</button>
+            <button onClick={() => onImageDelete(index)} disabled={isAnalyzing}>×</button>
           </div>
         ))}
       </div>

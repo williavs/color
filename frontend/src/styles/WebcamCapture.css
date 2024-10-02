@@ -1,0 +1,171 @@
+.webcam-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.webcam-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 75%; /* 4:3 Aspect Ratio */
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.webcam-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 1.2rem;
+}
+
+.capture-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  opacity: 0;
+  animation: flash 0.5s ease-out;
+}
+
+@keyframes flash {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.webcam-controls {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.capture-button, .analyze-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  margin: 0 10px;
+}
+
+.capture-button:hover, .analyze-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.capture-button:disabled, .analyze-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.analyze-button {
+  background-color: var(--accent-color);
+}
+
+.captured-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 10px;
+}
+
+.captured-image {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transition: all 0.3s ease;
+}
+
+.captured-image:hover {
+  transform: scale(1.05);
+}
+
+.captured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.captured-image button {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.captured-image button:hover {
+  background-color: #ff4d94;
+  transform: scale(1.1);
+}
+
+.captured-image button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .webcam-wrapper {
+    padding-top: 100%; /* 1:1 Aspect Ratio for mobile */
+  }
+
+  .capture-button, .analyze-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .captured-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Remove the countdown styles */
+.countdown {
+  display: none;
+}

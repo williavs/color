@@ -1,0 +1,122 @@
+# Frontend Styling Prompts
+
+## WebcamCapture Component
+
+1. Change the background color of the WebcamCapture component:
+   "In the WebcamCapture component (frontend/src/components/WebcamCapture.tsx), change the background color to [color]."
+
+2. Modify the capture button style:
+   "In WebcamCapture.tsx, update the capture button to have rounded corners and a [color] background."
+
+3. Adjust the webcam feed size:
+   "In the WebcamCapture component, resize the webcam feed to be [width] by [height] pixels."
+
+4. Change the font of the capture button text:
+   "In WebcamCapture.tsx, change the font of the 'Capture' button text to [font name]."
+
+5. Add a border to the webcam feed:
+   "In the WebcamCapture component, add a [width]px [style] border in [color] around the webcam feed."
+
+## Color Analysis Results Display
+
+6. Create a new component for displaying color analysis results:
+   "Create a new component called ColorAnalysisResults in frontend/src/components/ColorAnalysisResults.tsx to display the color analysis data received from the backend."
+
+7. Style the color analysis results:
+   "In the ColorAnalysisResults component, display each color as a circular swatch with the color name and percentage below it."
+
+8. Add animations to the results:
+   "In ColorAnalysisResults.tsx, add a fade-in animation when new results are displayed."
+
+## Layout and General Styling
+
+9. Create a responsive layout:
+   "Update the main App component (frontend/src/App.tsx) to use a responsive grid layout that works well on both desktop and mobile devices."
+
+10. Implement a dark mode:
+    "Add a dark mode option to the application, toggled by a switch in the top right corner of the page."
+
+11. Update the overall color scheme:
+    "Change the application's color scheme to use [primary color] as the primary color and [secondary color] as the secondary color throughout the frontend."
+
+12. Add a loading indicator:
+    "Create a loading spinner component and display it while waiting for the color analysis results from the backend."
+
+# Backend Prompts
+
+13. Modify color analysis algorithm:
+    "In backend/color_analysis.py, update the color analysis function to include the top [number] colors instead of just the top 3."
+
+14. Add error handling:
+    "In backend/app.py, add error handling to the image upload endpoint to gracefully handle cases where the uploaded file is not a valid image."
+
+15. Implement caching:
+    "Add caching to the color analysis results in the backend to improve performance for repeated analyses of the same image."
+
+# Full-Stack Prompts
+
+16. Add user authentication:
+    "Implement a simple user authentication system using JWT tokens, with login and registration endpoints in the backend and a login form in the frontend."
+
+17. Create a history feature:
+    "Add a feature to save color analysis history for logged-in users, storing results in a database and displaying them in a new 'History' page in the frontend."
+
+18. Implement real-time analysis:
+    "Update the application to perform color analysis in real-time as the webcam captures frames, instead of waiting for a button click."
+
+# Development Environment Prompts
+
+19. Add a new npm script:
+    "In the frontend/package.json file, add a new script called 'lint' that runs ESLint on all TypeScript files in the src directory."
+
+20. Update Docker configuration:
+    "Modify the docker-compose.yml file to add a volume for persisting database data for the new history feature."
+
+# Layout Adjustment Prompts
+
+1. Rearrange main components:
+   "In the main App component (frontend/src/App.tsx), rearrange the layout to have the WebcamCapture component on the left side and the ColorAnalysisResults component on the right side of the page."
+
+2. Add a header:
+   "Create a new Header component (frontend/src/components/Header.tsx) and place it at the top of the App component, spanning the full width of the page."
+
+3. Create a sidebar:
+   "Add a sidebar to the left side of the App component, containing navigation links for 'Home', 'History', and 'Settings'."
+
+4. Implement a grid layout:
+   "In the App component, use a CSS grid layout to create a 3x3 grid. Place the Header in the top row, the Sidebar in the left column, the WebcamCapture in the center, and the ColorAnalysisResults in the right column."
+
+5. Make the layout responsive:
+   "Update the App component's layout to stack the WebcamCapture and ColorAnalysisResults vertically on mobile devices (screen width less than 768px)."
+
+6. Adjust component sizes:
+   "In the App component, make the WebcamCapture take up 60% of the available space and the ColorAnalysisResults take up 40% when they're side by side."
+
+7. Add spacing between components:
+   "In the App component, add 20px of margin between the WebcamCapture and ColorAnalysisResults components."
+
+8. Create a footer:
+   "Add a Footer component (frontend/src/components/Footer.tsx) and place it at the bottom of the App component, spanning the full width of the page."
+
+9. Implement a tab layout for results:
+   "In the ColorAnalysisResults component, create a tab layout with 'Color Breakdown', 'Color Palette', and 'Color History' tabs to organize different views of the analysis results."
+
+10. Add a floating action button:
+    "Create a floating action button in the bottom right corner of the App component that, when clicked, scrolls the page to the top."
+
+# API-related Layout Prompts
+
+11. Add a loading overlay:
+    "Create a LoadingOverlay component that covers the entire app when waiting for a response from the color analysis API. Display a spinner and 'Analyzing...' text in the center."
+
+12. Implement an error message area:
+    "Add an ErrorMessage component at the top of the App, below the Header, that displays error messages received from any API calls."
+
+13. Create a color picker for manual input:
+    "Add a ColorPicker component next to the WebcamCapture that allows users to manually input colors for analysis, as an alternative to using the webcam."
+
+14. Add a results comparison view:
+    "Create a ComparisonView component that can display two ColorAnalysisResults side by side, allowing users to compare results from different images or API calls."
+
+15. Implement a collapsible API settings panel:
+    "Add a collapsible APISettings component to the Sidebar that allows users to toggle between different color analysis APIs or adjust API parameters."

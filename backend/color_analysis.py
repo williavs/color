@@ -30,7 +30,7 @@ Remember, your analysis should be precise, informative, and tailored to the indi
 
         human_message_content = [
             {"type": "text", "text": """
-Analyze the colors in these images and provide a comprehensive color analysis based on the 12-season color system. Structure your response using the following delimiters:
+Analyze the persons face in these images and provide a comprehensive color analysis based on the 12-season color system. Structure your response using the following delimiters, make each section extremely comprehensive and give justifications for your analysis:
 
 <ANALYSIS>
 1. Undertone: Determine if the person's skin has a warm (golden/yellow) or cool (blue/pink) undertone.
@@ -64,6 +64,9 @@ Describe the key characteristics of this season's color palette (e.g., warm and 
 <TIPS>
 Offer additional tips or considerations for choosing clothing colors, patterns, or makeup that would enhance their natural coloring. Include any specific advice based on the person's unique features or coloring.
 </TIPS>
+
+             ***IMPORTANT*** Take your time and think it through step by step before you provide your final response, dont rush it, this is extremely important to the USER. 
+             **OUTPUT_STRUCTURE_MANDATE** Outputs will be read with regex operation  "<${delimiter}>([\\s\\S]*?)</${delimiter}>`" Make sure you structure your response using the delimiters provided above and nothing else. 
 """},
         *image_contents
     ]
