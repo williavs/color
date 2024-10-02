@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8034:5000"  # Changed from 8000:5000 to 8034:5000
+    volumes:
+      - ./backend:/app
+      - ./backend/test_images:/app/test_images
+    env_file:
+      - .env
+    environment:
+      - FLASK_ENV=development
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3034:3000"  # Changed from 3010:3000 to 3034:3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  # Frontend service can be added later

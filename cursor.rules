@@ -1,0 +1,98 @@
+Project: Color Analysis X
+
+Project Description:
+Color Analysis X is a web application that captures multiple pictures of the user from their webcam, provides helpful hints and lighting tips for accurate results, and uses AI-powered analysis to give users a comprehensive color analysis based on the 12-season color system.
+
+Key Features:
+1. Webcam integration for capturing 5 pictures per session
+2. Real-time hints and lighting tips for optimal photo quality
+3. AI-powered color analysis using OpenAI API through LangChain
+4. Comprehensive color analysis results based on the 12-season color system
+5. Sleek, modern, and easy-to-use UI with 4 main components
+
+Technical Stack:
+
+Frontend:
+- Framework: React 17.0.2 with TypeScript
+- State Management: React Hooks (useState)
+- API Communication: Axios
+- UI Components: Custom React components
+- Webcam Integration: react-webcam
+
+Backend:
+- Language: Python 3.9
+- Framework: Flask
+- CORS handling: flask-cors
+- AI Integration: LangChain with OpenAI
+
+API Integration:
+- OpenAI API through LangChain for multimodal data processing
+
+Containerization:
+- Docker and Docker Compose
+
+Infrastructure:
+- Local development environment
+- Potential for future deployment on Linode (not implemented yet)
+
+CI/CD:
+- Not implemented yet, but considered for future
+
+Application Structure:
+project-root/
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── WebcamCapture.tsx
+│   │   │   ├── AnalysisResults.tsx
+│   │   │   ├── TipsGuide.tsx
+│   │   │   └── ProgressIndicator.tsx
+│   │   ├── services/
+│   │   │   └── api.ts
+│   │   ├── App.tsx
+│   │   └── index.tsx
+│   ├── public/
+│   │   └── index.html
+│   ├── package.json
+│   └── tsconfig.json
+├── backend/
+│   ├── app.py
+│   ├── color_analysis.py
+│   ├── requirements.txt
+│   └── test_images/
+├── docker-compose.yml
+├── Dockerfile.frontend
+├── Dockerfile.backend
+├── .env
+└── Makefile
+
+Key Components:
+1. WebcamCapture: Handles image capture from the webcam
+2. AnalysisResults: Displays the color analysis results
+3. TipsGuide: Provides tips for optimal photo capture
+4. ProgressIndicator: Shows the current step in the analysis process
+
+Workflow:
+1. User captures 5 images using the webcam
+2. Images are sent to the backend for analysis
+3. Backend processes images using OpenAI API via LangChain
+4. Results are returned to the frontend and displayed to the user
+
+Development Workflow:
+- Use of Makefile for common development tasks
+- Docker Compose for running the application in containers
+
+Environment Variables:
+- OPENAI_API_KEY: Required for backend to communicate with OpenAI API
+
+
+Ports:
+- Frontend: 3034 (host) -> 3000 (container)
+- Backend: 8034 (host) -> 5000 (container)
+
+Next Steps:
+1. Implement error handling and user feedback
+2. Enhance UI/UX design
+3. Add unit and integration tests
+4. Set up CI/CD pipeline
+5. Prepare for production deployment

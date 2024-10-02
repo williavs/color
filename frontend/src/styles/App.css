@@ -1,0 +1,169 @@
+:root {
+  --primary-color: #FF61A6;
+  --secondary-color: #7ED7C1;
+  --accent-color: #FFC93C;
+  --background-color: #F9F9F9;
+  --text-color: #333333;
+  --font-main: 'Poppins', sans-serif;
+  --font-accent: 'Fredoka One', cursive;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-main);
+  background: linear-gradient(135deg, #FFC0CB, #87CEFA);
+  color: var(--text-color);
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: var(--font-accent);
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-align: center;
+  text-shadow: 2px 2px var(--accent-color);
+  margin: 0 0 20px 0;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.left-column, .right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.webcam-container {
+  width: 100%;
+  max-width: none;
+  margin-bottom: 20px;
+}
+
+.tips-guide {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.progress-indicator {
+  margin-bottom: 20px;
+}
+
+.analysis-results, .placeholder-results {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.placeholder-results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.captured-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.captured-image {
+  position: relative;
+  margin: 5px;
+  width: 80px;
+  height: 80px;
+}
+
+.captured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.captured-image button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: rgba(255, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.captured-image button:hover {
+  background-color: rgba(255, 0, 0, 1);
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+  
+  .left-column, .right-column {
+    flex: none;
+  }
+}
