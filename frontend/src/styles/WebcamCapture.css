@@ -66,6 +66,10 @@
 .capture-button, .analyze-button {
   padding: 12px 24px;
   font-size: 1rem;
+  font-family: 'Poppins', sans-serif; /* Add this line */
+  font-weight: 600; /* Add this line */
+  text-transform: uppercase; /* Add this line */
+  letter-spacing: 1px; /* Add this line */
   cursor: pointer;
   background-color: var(--primary-color);
   color: white;
@@ -156,7 +160,7 @@
 
   .capture-button, .analyze-button {
     padding: 10px 20px;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Adjust this line */
   }
 
   .captured-image {
@@ -169,3 +173,6 @@
 .countdown {
   display: none;
 }
+
+/* Add this new rule */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
